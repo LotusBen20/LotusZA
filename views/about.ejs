@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <link rel="stylesheet" href="css/about.css"> <!-- Подключите свой файл стилей -->
+    <link rel="stylesheet" href="css/allstyles.css">
+</head>
+<body>
+    <%- include('partials/navbar') %> <!-- Подключение навигационного меню -->
+
+    <div class="container">
+        <h1>О нас</h1>
+        <p>
+            Welcome to our application! Here, you can manage posts, users, and more.
+            Our mission is to provide a seamless experience for all users. 
+            We hope you find our platform useful and easy to navigate.
+        </p>
+        
+        <% if (user) { %>
+            <p>Hello, <strong><%= user.username %></strong>! Thanks for being a part of our community.</p>
+        <% } else { %>
+            <p>Please <a href="/login">log in</a> to enjoy more features.</p>
+        <% } %>
+
+        <a href="/home">Главная</a>
+    </div>
+
+</body>
+</html>

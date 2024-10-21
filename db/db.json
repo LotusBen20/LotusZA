@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": "1729282554585",
+      "username": "DemonSlayer",
+      "password": "$2b$10$xTbJ.4GZCyXnP9SIIBKYdOfeGBK6mb60TIp.gVsOzmsvXH8ZRhxeO",
+      "isAdmin": true
+    },
+    {
+      "id": "1729285346034",
+      "username": "LotusBen20",
+      "password": "$2b$10$yeA7lPuXY/pcUmhnrm96sOCGKyh4xVoZ8oLOI/vLAyCaXTzPuvvxG",
+      "isAdmin": false
+    },
+    {
+      "id": "1729351414120",
+      "username": "Chember",
+      "password": "$2b$10$bPZ3QzQnNIXs8eQpAPXmrOO3ybmy3o4lCtGixwGZuFI6WZxtm6t7G",
+      "isAdmin": true,
+      "registeredAt": "2024-10-19T15:23:34.120Z"
+    },
+    {
+      "id": "1729351971373",
+      "username": "Reyna",
+      "email": "lotusben20@gmail.com",
+      "password": "$2b$10$j7gTs0FUbt3sOLk/hg0ZTeJfUFn3cC80Uu/8rVA80kUSDzgwM6lWC",
+      "isAdmin": true,
+      "registeredAt": "2024-10-19T15:32:51.373Z",
+      "avatar": "/uploads/avatars/1729355515311-708824042.jpeg"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Первый пост",
+      "description": "Это описание первого поста. Здесь я делюсь своими мыслями о программировании."
+    },
+    {
+      "id": "2",
+      "title": "Второй пост",
+      "description": "Сегодня я узнал о новом фреймворке для создания веб-приложений. Он называется React."
+    }
+  ]
+}

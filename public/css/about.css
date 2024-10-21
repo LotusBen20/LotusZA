@@ -1,0 +1,76 @@
+/* about.css */
+
+/* Основные стили для body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2c3e50; /* Темный фон страницы */
+    margin: 0;
+    padding: 0;
+    color: #ecf0f1; /* Светлый цвет текста */
+}
+
+/* Контейнер для содержимого страницы */
+.container {
+    max-width: 800px;
+    margin: 50px auto; /* Отступ сверху и снизу */
+    padding: 30px;
+    background-color: #34495e; /* Темный фон для контейнера */
+    border-radius: 10px; /* Скругление углов */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Тень */
+    text-align: center;
+    transition: transform 0.3s; /* Плавный переход при наведении */
+}
+
+/* Эффект при наведении на контейнер */
+.container:hover {
+    transform: translateY(-5px); /* Подъем контейнера при наведении */
+}
+
+/* Заголовок страницы */
+h1 {
+    color: #f39c12; /* Яркий цвет заголовка для контраста */
+    margin: 20px 0; /* Отступ сверху и снизу */
+    font-size: 2.5em; /* Размер заголовка */
+    text-transform: uppercase; /* Заглавные буквы */
+    letter-spacing: 1px; /* Расстояние между буквами */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Более заметная тень для заголовка */
+}
+
+/* Параграфы текста */
+p {
+    font-size: 18px;
+    color: #ecf0f1; /* Светлый цвет текста для параграфов */
+    line-height: 1.6; /* Интервал между строками */
+    margin-bottom: 15px; /* Отступ снизу */
+}
+
+/* Стили для ссылок */
+a {
+    color: #e67e22; /* Цвет ссылок */
+    text-decoration: none;
+    font-weight: bold; /* Жирный текст для ссылок */
+    border-bottom: 2px solid transparent; /* Подчёркивание ссылок */
+    transition: color 0.3s, border-color 0.3s; /* Плавный переход цвета и подчеркивания */
+}
+
+/* Эффект при наведении на ссылки */
+a:hover {
+    border-color: #e67e22; /* Цвет подчеркивания при наведении */
+    color: #d35400; /* Более темный цвет при наведении */
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Меньшие отступы на мобильных устройствах */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Размер заголовка на мобильных */
+        margin: 15px 0; /* Меньшие отступы для мобильных устройств */
+    }
+
+    p {
+        font-size: 16px; /* Размер текста на мобильных */
+    }
+}

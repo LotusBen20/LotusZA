@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Подключение Bootstrap и Google Material Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUa3Y5cd6EY5hF+ErjO9BLurIL8Ql6bUohOU+Z5dAA6bzzYllBf1AI+ksdkg" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Подключение кастомных стилей -->
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="css/allstyles.css">
+    <link rel="stylesheet" href="css/modal_card.css">
+</head>
+<body>
+
+    <%- include('partials/navbar') %>
+
+    <!-- Страница профиля -->
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card profile-card shadow-lg">
+            <div class="card-header text-center">
+                <img src="<%= user.avatar ? user.avatar : '/images/user-avatar.png' %>" alt="User Avatar"
+                    class="profile-avatar rounded-circle">
+                <h3 class="mt-3"><%= user.username %></h3>
+                <!-- Кнопка для изменения аватара -->
+                <button class="btn btn-secondary mt-2" id="myBtn">
+                    <span class="bi bi-camera"></span>
+                </button>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">User Details</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span class="material-icons">email</span> Почта: <%= user.email %></li>
+                    <li class="list-group-item"><span class="material-icons">account_balance_wallet</span> Баланс: <%= user.balance %> рублей</li>
+                    <li class="list-group-item"><span class="material-icons">calendar_today</span> Дата регистрации: <%= new Date(user.registeredAt).toLocaleDateString() %></li>
+                </ul>
+            </div>
+            <div class="card-footer text-center">
+                <a href="/edit_profile" class="btn btn-primary d-flex align-items-center justify-content-center mb-2">
+                    <span class="bi bi-pencil"></span>
+                </a>
+                <a href="/change_password" class="btn btn-danger d-flex align-items-center justify-content-center">
+                    <span class="bi bi-key"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для загрузки аватара -->
+    <div class="modal" id="uploadAvatarModal" tabindex="-1" aria-labelledby="uploadAvatarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadAvatarModalLabel">Загрузить новый аватар</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="avatarUploadForm" action="/upload_avatar" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="avatarFile" class="form-label">Выберите изображение</label>
+                            <input class="form-control" type="file" id="avatarFile" name="avatar" accept="image/*"
+                                required>
+                            <div class="invalid-feedback">Пожалуйста, выберите изображение.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="avatarUploadForm">Загрузить</button>
+                    <button type="button" class="btn btn-secondary close" onclick="closeModal()">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для просмотра полного изображения -->
+    <div class="modal" id="fullImageModal" tabindex="-1" aria-labelledby="fullImageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img id="fullProfileImage" src="" alt="Полное изображение" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-mQ93vn2PcC4tvZp5WFWJ36MNjaC4VVMEJp6aoQsxC1o5g+yzYXaUnYB4xQFTF60C"
+        crossorigin="anonymous"></script>
+
+    <!-- Скрипт для работы с модальным окном -->
+    <script>
+        // Получаем элементы
+        const modal = document.getElementById('uploadAvatarModal');
+        const fullImageModal = document.getElementById('fullImageModal');
+        const btn = document.getElementById("myBtn");
+        const closeBtn = document.querySelector(".close");
+        const fullProfileImage = document.getElementById('fullProfileImage');
+
+        // Функция для открытия модального окна загрузки аватара
+        const openModal = () => {
+            modal.classList.add('show'); // Добавляем класс для показа
+            modal.style.display = 'block'; // Устанавливаем стиль display
+            modal.setAttribute('aria-hidden', 'false'); // Для доступности
+        };
+
+        // Функция для закрытия всех модальных окон
+        const closeAllModals = () => {
+            modal.classList.remove('show'); // Убираем класс показа
+            modal.style.display = 'none'; // Устанавливаем стиль display
+            modal.setAttribute('aria-hidden', 'true'); // Для доступности
+
+            fullImageModal.classList.remove('show');
+            fullImageModal.style.display = 'none';
+            fullImageModal.setAttribute('aria-hidden', 'true');
+        };
+
+        // Открытие модального окна для загрузки аватара
+        btn.onclick = openModal;
+
+        // Закрытие модального окна загрузки аватара при нажатии на элемент с классом "close"
+        closeBtn.onclick = closeAllModals;
+
+        // Закрытие модального окна загрузки аватара при клике вне его
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                closeAllModals();
+            }
+        };
+
+        // Закрытие модального окна при нажатии клавиши Escape
+        window.onkeydown = (event) => {
+            if (event.key === "Escape") {
+                closeAllModals();
+            }
+        };
+
+        // Проверка формы перед отправкой
+        document.getElementById('avatarUploadForm').onsubmit = function (event) {
+            const avatarFile = document.getElementById('avatarFile');
+            if (!avatarFile.files.length) {
+                avatarFile.classList.add('is-invalid');
+                event.preventDefault(); // Отменить отправку, если файл не выбран
+            } else {
+                avatarFile.classList.remove('is-invalid');
+            }
+        };
+
+        // Функция для открытия модального окна с полным изображением
+        const openFullImageModal = () => {
+            const avatarSrc = document.querySelector('.profile-avatar').src; // Получаем источник изображения
+            fullProfileImage.src = avatarSrc; // Устанавливаем источник изображения в модальном окне
+            fullImageModal.classList.add('show'); // Показываем модальное окно
+            fullImageModal.style.display = 'block'; // Устанавливаем стиль display
+            fullImageModal.setAttribute('aria-hidden', 'false'); // Для доступности
+        };
+
+        // Привязываем клик на изображение профиля к функции открытия модального окна
+        document.querySelector('.profile-avatar').onclick = openFullImageModal;
+
+        // Закрытие модального окна просмотра полного изображения
+        fullImageModal.onclick = closeAllModals;
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/adminpanel.css"> <!-- Подключите свой файл стилей -->
+    <link rel="stylesheet" href="css/allstyles.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    
+    <div class="container">
+        <h1>Админ-Панель</h1>
+        
+        <div class="section">
+            <h2>Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Никнейм</th>
+                        <th>Пароль</th>
+                        <th>Баланс</th> <!-- Новый столбец для баланса -->
+                        <th>Админ</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.password %></td>
+                            <td><%= user.balance %> руб</td> <!-- Отображение баланса -->
+                            <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+                            <td>
+                                <form action="/delete_user" method="POST" style="display:inline;">
+                                    <input type="hidden" name="userId" value="<%= user.id %>">
+                                    <button type="submit" class="btn delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Posts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% posts.forEach(post => { %>
+                        <tr>
+                            <td><%= post.id %></td>
+                            <td><%= post.title %></td>
+                            <td><%= post.description %></td>
+                            <td>
+                                <form action="/delete_post" method="POST" style="display:inline;">
+                                    <input type="hidden" name="postId" value="<%= post.id %>">
+                                    <button type="submit" class="btn delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Обертка для кнопки -->
+        <div class="button-container">
+            <a href="/home" class="btn back">Назад на главную</a>
+        </div>
+    </div>
+
+    <style>
+        /* Стили для кнопки */
+        .btn.back {
+            padding: 8px 16px; /* Уменьшенные отступы */
+            background-color: #555; /* Темный фон для кнопки */
+            border: 1px solid #007bff; /* Синий бордер */
+            border-radius: 4px; /* Закругленные углы */
+            color: #fff; /* Белый текст */
+            font-size: 14px; /* Уменьшенный размер шрифта */
+            text-align: center; /* Центрирование текста */
+            transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
+            display: inline-block; /* Чтобы кнопка могла иметь отступы */
+        }
+
+        .btn.back:hover {
+            background-color: #007bff; /* Синий фон при наведении */
+            transform: translateY(-2px); /* Легкое поднятие при наведении */
+        }
+
+        /* Центрирование кнопки */
+        .button-container {
+            display: flex; /* Используем flexbox для центрирования */
+            justify-content: center; /* Центрируем по горизонтали */
+            margin-top: 20px; /* Отступ сверху */
+            width: 100%; /* Убедимся, что контейнер занимает 100% ширины */
+        }
+    </style>
+</body>
+</html>

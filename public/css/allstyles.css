@@ -1,0 +1,133 @@
+/* Общие стили для сайта */
+
+/* Установка базового шрифта и размеров */
+body {
+    font-family: 'Arial', sans-serif; /* Вы можете поменять шрифт, если нужно */
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Темный фон */
+    color: #e0e0e0; /* Светлый цвет текста */
+
+    -ms-user-select: none; 
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+    user-select: none; 
+}
+
+/* Заголовки */
+h1, h3 {
+    color: #ffffff; /* Белый цвет заголовков */
+}
+
+/* Ссылки */
+a {
+    color: #bb86fc; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+a:hover {
+    color: #3700b3; /* Цвет ссылок при наведении */
+}
+
+/* Заголовки */
+h1 {
+    margin: 20px 0;
+    text-align: center; /* Центрируем заголовки */
+}
+
+/* Стили для навигационной панели с использованием Bootstrap */
+.navbar {
+    background-color: #1f1f1f; /* Темный фон навбара */
+    padding: 15px 0; /* Отступы в навбаре */
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar-nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+/* Для адаптивного контента, использую встроенные классы Bootstrap */
+
+/* Карточки */
+.cards {
+    margin: 20px auto;
+}
+
+.card {
+    background-color: #1f1f1f;
+    border: none;
+    border-radius: 8px;
+}
+
+.card-body {
+    color: #e0e0e0;
+}
+
+.card-title {
+    color: #bb86fc;
+}
+
+.card-text {
+    color: #e0e0e0;
+}
+
+/* Кнопки, с дополнительным стилем от Bootstrap */
+button, .btn {
+    background-color: #bb86fc; /* Цвет фона */
+    color: #ffffff; /* Цвет текста */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .btn:hover {
+    background-color: #3700b3; /* Изменение цвета при наведении */
+}
+
+/* Стили для поиска */
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Центрируем и задаем отступы */
+}
+
+.search-icon {
+    cursor: pointer;
+    font-size: 24px; /* Размер иконки */
+    color: #bb86fc; /* Цвет иконки */
+    transition: transform 0.3s;
+    margin-right: 10px; /* Отступ справа */
+}
+
+.search-icon:hover {
+    transform: scale(1.1); /* Увеличение иконки при наведении */
+}
+
+#searchInput {
+    width: 0;
+    opacity: 0;
+    padding: 10px; /* Отступы внутри поля ввода */
+    border: 1px solid #bb86fc; /* Цвет рамки */
+    border-radius: 5px; /* Закругление углов */
+    background-color: #1f1f1f; /* Фон поля */
+    color: #e0e0e0; /* Цвет текста */
+    transition: width 0.4s ease, opacity 0.4s ease;
+}
+
+#searchInput.active {
+    width: 300px; /* Ширина при активации */
+    opacity: 1; /* Полная видимость */
+}

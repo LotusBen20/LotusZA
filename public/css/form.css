@@ -1,0 +1,63 @@
+/* Общие стили для формы */
+form.post_form {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa); /* Градиентный фон с более мягким цветом */
+    border-radius: 15px; /* Закругленные углы */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Более выраженная тень */
+    padding: 40px; /* Увеличенный внутренний отступ */
+    max-width: 500px; /* Максимальная ширина формы */
+    margin: 30px auto; /* Центрирование формы */
+    font-family: 'Arial', sans-serif; /* Шрифт формы */
+}
+
+/* Стили для полей ввода */
+input[type="text"],
+textarea {
+    width: 100%; /* Ширина 100% */
+    padding: 12px; /* Увеличенный внутренний отступ */
+    margin: 15px 0; /* Отступы сверху и снизу */
+    border: 1px solid #ccc; /* Цвет границы */
+    border-radius: 8px; /* Закругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Плавный переход для границы */
+}
+
+/* Стили для текстового поля */
+textarea {
+    resize: vertical; /* Позволяет изменять размер только по вертикали */
+    max-width: 100%; /* Ограничиваем ширину текстового поля */
+    min-height: 100px; /* Минимальная высота текстового поля */
+    max-height: 150px; /* Максимальная высота текстового поля */
+}
+
+/* Эффект при наведении на поля ввода */
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #4a90e2; /* Цвет границы при фокусе */
+    outline: none; /* Убираем стандартное обводка */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Тень при фокусе */
+}
+
+/* Стили для кнопки */
+button {
+    background-color: #4a90e2; /* Цвет фона кнопки */
+    color: white; /* Цвет текста */
+    border: none; /* Без границы */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 12px 20px; /* Увеличенный внутренний отступ */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Плавный переход */
+}
+
+/* Эффект при наведении на кнопку */
+button:hover {
+    background-color: #357ab7; /* Цвет фона при наведении */
+    transform: translateY(-2px); /* Подъем кнопки при наведении */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    form {
+        padding: 25px; /* Уменьшаем внутренний отступ на меньших экранах */
+    }
+}

@@ -1,0 +1,100 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUa3Y5cd6EY5hF+ErjO9BLurIL8Ql6bUohOU+Z5dAA6bzzYllBf1AI+ksdkg" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="css/allstyles.css">
+
+<nav class="navbar">
+    <ul>
+        <li><a class="bi bi-house" href="/home"></a></li>
+        <li><a class="bi bi-file-person" href="/about"></a></li>
+        <% if (!user) { %>
+            <li><a class="bi bi-box-arrow-in-right" href="/login">Login/Register</a></li>
+        <% } else { %>
+            <li><a class="bi bi-person-circle" href="/profile"></a></li>
+            <li><a class="bi bi-shop" href="/buy_admin"></a></li>
+            <li><a class="bi bi-wallet2" href="/recharge"></a></li>
+            <% if (user.isAdmin) { %>
+                <li><a class="bi bi-cast" href="/adminpanel"></a></li>
+                <li><a class="bi bi-code-square" href="/add_post"></a></li>
+            <% } %>
+            <li>
+                <form action="/logout" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-link bi bi-box-arrow-left" style="color: white; text-decoration: none;"></button>
+                </form>
+            </li>
+            <!-- Аватарка пользователя -->
+            <li class="avatar-container">
+                <img src="<%= user.avatar ? user.avatar : '/images/user-avatar.png' %>" alt="User Avatar" class="profile-avatar-navbar">
+            </li>
+        <% } %>
+    </ul>
+</nav>
+
+<style>
+    /* Основные стили для навигационного меню */
+    .navbar {
+        background: linear-gradient(to right, #2c3e50, #34495e); /* Градиентный фон */
+        padding: 5px 15px; /* Уменьшенные отступы */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Увеличенная тень */
+        border-radius: 5px; /* Скругление углов */
+    }
+
+    .navbar ul {
+        list-style-type: none; /* Убираем маркеры списка */
+        margin: 0; /* Убираем отступы */
+        padding: 0; /* Убираем внутренние отступы */
+        display: flex; /* Flexbox для горизонтального выравнивания */
+        align-items: center; /* Центрируем элементы по вертикали */
+    }
+
+    .navbar li {
+        margin-right: 15px; /* Уменьшенные отступы между элементами */
+    }
+
+    .navbar a {
+        text-decoration: none; /* Убираем подчеркивание */
+        color: white; /* Цвет текста */
+        font-weight: bold; /* Жирный шрифт */
+        transition: color 0.3s, background-color 0.3s; /* Плавный переход цвета и фона */
+        padding: 8px 12px; /* Увеличенные отступы для ссылок */
+        border-radius: 4px; /* Скругление углов для ссылок */
+    }
+
+    .navbar a:hover {
+        color: #fff; /* Цвет текста при наведении */
+        background-color: rgba(255, 255, 255, 0.1); /* Легкий фон при наведении */
+    }
+
+    .navbar a.active {
+        color: #3498db; /* Цвет активной ссылки */
+        font-weight: bold; /* Жирный шрифт для активной ссылки */
+    }
+
+    /* Для мобильных устройств */
+    @media (max-width: 768px) {
+        .navbar ul {
+            flex-direction: column; /* Вертикальное расположение элементов на маленьких экранах */
+            padding: 10px; /* Отступы */
+        }
+
+        .navbar li {
+            margin: 5px 0; /* Уменьшенные вертикальные отступы между элементами */
+        }
+    }
+
+    /* Стили для аватарки в навбаре */
+    .avatar-container {
+        margin-left: auto; /* Отодвигаем аватарку в правую часть */
+        width: 40px; /* Ширина аватарки */
+        height: 40px; /* Высота аватарки */
+        border-radius: 50%; /* Круглая форма */
+        overflow: hidden; /* Прячем лишние части */
+    }
+
+    .profile-avatar-navbar {
+        width: 100%; /* Занимаем всю ширину контейнера */
+        height: 100%; /* Занимаем всю высоту контейнера */
+        object-fit: cover; /* Обрезаем изображение, чтобы сохранить пропорции */
+        border: 2px solid white; /* Обводка для выделения */
+    }
+</style>
+
