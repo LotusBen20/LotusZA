@@ -106,6 +106,8 @@ app.get('/profile', isAuthenticated, (req, res) => {
     });
 });
 
+// 
+
 // Страница пополнения счета
 app.get('/recharge', isAuthenticated, (req, res) => {
     const userId = req.session.userId;
@@ -435,5 +437,5 @@ app.post('/create_post', isAuthenticated, (req, res) => {
 // Запуск сервера
 const PORT = 3000;
 app.listen(PORT, () => {
-    // console.log(`Сервер запущен на http://localhost:${PORT}`);
+    console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
